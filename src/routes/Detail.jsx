@@ -76,20 +76,10 @@ function Detail(props) {
     useEffect(() => {}, [count]) // 5. dependency 추가한 경우, 특정 값 변경시에만 
 
 
-    
-        let test = 'refund';
-        let ui = {info: <p>i</p>,
-        shipping : <p>s</p>,
-        refund :  <p>r</p>}
-
     return (
         
         <div className={`container start ${fade}`}>
-            <div>
-             {
-                ui [test]
-            }
-            </div>
+
             {alert ? 
             <div className="alert alert-warning">
                 2초 이내 구매시 할인
