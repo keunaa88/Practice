@@ -65,7 +65,7 @@ let cart = createSlice({
                 state[index].count --;
             }
         },
-        addItem(state, action) {
+      addItem(state, action) { 
 
             let index = state.findIndex(item=> item.id === action.payload.id);
             if(index === -1) {
