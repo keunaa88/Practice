@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 import { Nav } from 'react-bootstrap';
 import { Context1 } from '../App';
 import {useSelector, useDispatch} from 'react-redux'
-import { addItem } from './../store.js';
+import { addItem, changeWatched } from './../store.js';
 
 // styled components 장점
 // 스타일이 다른 js파일로 오염되지 않음 Detail.module.css(detail에만 적용됨)/ 로딩시간 단축
@@ -18,7 +18,6 @@ import { addItem } from './../store.js';
 function Detail(props) {
 
     let state = useSelector((state) => { return state })
-
     let dispatch = useDispatch();
 
    
@@ -32,6 +31,27 @@ function Detail(props) {
     let [text, setText] = useState('');
     let [tab, setTab] = useState(0);
     let [fade, setFade] = useState('');
+
+    useEffect(() => {
+        let watched = JSON.parse(localStorage.getItem('watched'));
+
+        //중복제거? set자료형사용합시다
+        watched.push(item.id);
+        watched = new Set(watched);
+        watched = Array.from(watched)
+        // if(!watched.includes(item.id))
+        //     watched.push(item.id);
+        localStorage.setItem('watched', JSON.stringify(watched));
+    }, []); //마운트 될때만 실행
+
+    //dispatch(changeWatched(id))
+    // let [watched, setWatched] = useState([]);
+    // setWatched([id]);
+    // localStorage.setItem('watched', watched);
+    // console.log(localStorage.getItem('watched'));
+
+
+   
 
     useEffect(() => {
         // let timer = setTimeout(() => {
@@ -87,8 +107,9 @@ function Detail(props) {
             }
             <div className="row">
                 <div className="col-md-6">
-                    <img src={'https://codingapple1.github.io/shop/shoes'+(id)+'.jpg'} width="100%" />
+                    <img src={`https://codingapple1.github.io/shop/shoes${(parseInt(id)+1)}.jpg`} width="100%" />
                 </div>
+                
                 {/* {typeAlert ? 
                     <p style={{color: 'red'}}>경고: 숫자가아님</p> : null }
                     

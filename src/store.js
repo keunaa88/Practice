@@ -27,6 +27,7 @@ import user from './store/userSlice.js'
 // use의 함수들 
 //export let {changeName, changeAge} = user.actions
 
+
 let stock = createSlice({  //useState()와 비슷한 역할
     name : 'stock',
     initialState : [10, 20, 30]
@@ -51,6 +52,7 @@ let cart = createSlice({
             //let ddd = state.findIndex((item) => { return item.id === action.payload})
             //console.log(ddd)
             // 1. find index사용
+            console.log(state)
             let index = state.findIndex(item=> item.id === action.payload);
             state[index].count ++;
             // 2. find 사용
@@ -84,11 +86,12 @@ let cart = createSlice({
 export let {changeCount, subCount, addItem} = cart.actions
 
 
+
 export default configureStore ({
     reducer: {
         user : user.reducer,
         animal : animal.reducer,
         stock : stock.reducer,
-        cart : cart.reducer
+        cart : cart.reducer,
     }
 })
