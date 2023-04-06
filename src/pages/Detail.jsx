@@ -15,7 +15,7 @@ import { addItem, changeWatched } from './../store.js';
 // componentDidUnmount();
 
 
-function Detail(props) {
+function Detail() {
 
     let state = useSelector((state) => { return state })
     let dispatch = useDispatch();

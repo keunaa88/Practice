@@ -1,0 +1,47 @@
+
+import { Nav, Navbar, Container, Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import Button from './Button';
+
+
+function NavComp() {
+  
+  let navigate = useNavigate(); //페이지 이동을 도와주는 함수 
+
+  return (
+    
+      <Navbar bg="light" variant="light" style={{'fontSize' : '11.5px'}}> 
+        <Container>
+          <Navbar.Brand onClick={() => { navigate('/')}} style={{"fontWeight": "700", "cursor" : "pointer"}}>906 Studio</Navbar.Brand>
+            <Nav className="me-auto">
+              <Nav.Link onClick={() => { navigate('/best')}}>BEST30</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/detail/1')}}>TOP</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/about')}}>PANTS</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/cart')}}>DRESS</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/cart')}}>BAG</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/shoes')}}>SHOES</Nav.Link>
+            </Nav>
+            <Nav className="ms-auto" style={{color : 'white'}}> 
+              <Nav.Link onClick={() => { navigate('/event')}}> Login</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/event')}}> Join</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/event')}}> My page</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/event')}}> Community</Nav.Link>
+              <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+              />
+            <Button text={"Search"}></Button>
+          </Form>
+            </Nav>
+        </Container>
+        
+      </Navbar>
+    );
+
+}
+
+
+export default NavComp;

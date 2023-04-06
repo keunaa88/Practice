@@ -16,13 +16,13 @@ root.render(
   //아래와 같이 프로바이더를 써주면(리덕스)
   //APP에 있는, 자식에 있는 곳에서 모든 state사용가능
   //QueryClient >>>> react-query 실시간 데이터에 사용하는 라이브러리
-  <QueryClientProvider client = {queryClient} > 
+  //<QueryClientProvider client = {queryClient} > 
     <Provider store = {store}> 
       <BrowserRouter>
         <App /> 
       </BrowserRouter>
     </Provider>
-  </QueryClientProvider>
+  //</QueryClientProvider>
   // </React.StrictMode>
 );
 
