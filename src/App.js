@@ -1,3 +1,5 @@
+import './App.css';
+
 import React from "react";
 import { Routes, Route, Switch } from "react-router-dom";
 import Home from './pages/Home';
@@ -6,15 +8,20 @@ import Detail from './pages/Detail';
 import About from './pages/About';
 import Event from './pages/Event';
 import Cart from './pages/Cart';
-
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
+import Navbar from './components/Navbar';
 // //성능개선
 // const Detail = lazy(() => import('./routes/Detail'));
 // const Cart = lazy(() => import('./routes/Cart'));
+
 
 function App() {
 
   return (
     <div className="App">
+       
+        <Navbar></Navbar>
         <Routes>
           {/* <Route path="/detail/:id" element={<Detail shoes={shoes}/>} />
               <Route path="/cart" element={<Cart />} /> */}
@@ -29,6 +36,8 @@ function App() {
               <Route path="member" element={<div>about-member</div>} />
               <Route path="location" element={<div>???</div>}  />
             </Route>
+
+            <Route path="/admin" element={<Admin />}></Route>
             <Route path="*" element={<div>없는 페이지임</div>} /> 
             {/* 404페이지 만들기 */}
         </Routes>

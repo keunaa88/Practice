@@ -1,15 +1,20 @@
-
+import { useState } from 'react';
 import { Nav, Navbar, Container, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
-
+import JoinModal from './Modal/JoinModal';
+import LoginModal from './Modal/LoginModal';
 
 function NavComp() {
   
   let navigate = useNavigate(); //페이지 이동을 도와주는 함수 
+  const [loginModalOn, setLoginModalOn] = useState(false);
+  const [joinModalOn, setJoinModalOn] = useState(false);
 
   return (
-    
+    <>
+      <LoginModal show={loginModalOn} onHide={() => setLoginModalOn(false)}></LoginModal>
+      <JoinModal show={joinModalOn} onHide={() => setJoinModalOn(false)}></JoinModal>
       <Navbar bg="light" variant="light" style={{'fontSize' : '11.5px'}}> 
         <Container>
           <Navbar.Brand onClick={() => { navigate('/')}} style={{"fontWeight": "700", "cursor" : "pointer"}}>906 Studio</Navbar.Brand>
@@ -22,10 +27,13 @@ function NavComp() {
               <Nav.Link onClick={() => { navigate('/shoes')}}>SHOES</Nav.Link>
             </Nav>
             <Nav className="ms-auto" style={{color : 'white'}}> 
-              <Nav.Link onClick={() => { navigate('/event')}}> Login</Nav.Link>
-              <Nav.Link onClick={() => { navigate('/event')}}> Join</Nav.Link>
+            {/* <Nav.Link onClick={() => { f.toggleModal }}> Login</Nav.Link> */}
+              {/* <Nav.Link onClick={() => { navigate('/join')}}> Join</Nav.Link> */}
+              <Nav.Link onClick={() => setLoginModalOn(true) }> Login</Nav.Link>
+              <Nav.Link onClick={() => setJoinModalOn(true) }> Join</Nav.Link>
               <Nav.Link onClick={() => { navigate('/event')}}> My page</Nav.Link>
               <Nav.Link onClick={() => { navigate('/event')}}> Community</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/admin')}}> Admin</Nav.Link>
               <Form className="d-flex">
               <Form.Control
                 type="search"
@@ -39,6 +47,7 @@ function NavComp() {
         </Container>
         
       </Navbar>
+      </>
     );
 
 }

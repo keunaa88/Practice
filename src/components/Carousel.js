@@ -11,12 +11,12 @@ import styled from "styled-components";
 
 const IMG = styled.img`
   width: 100%;
- 
 `;
 
 const Container = styled.div`
   width: 100%;
   overflow: hidden; 
+  display: table;
 `;
 const Button = styled.button`
   all: unset;
@@ -36,18 +36,29 @@ const SliderContainer = styled.div`
   width: 100%;
   display: flex; 
 `;
-//이미지들을 가로로 나열합니다.
+
+const Slider = styled.div`
+  position: absolute;
+  width: 100%;
+`;
+
+const SliderImg = styled.img`
+  position: relative;
+  z-Index: 10;
+`;
+
+
+
 function Carousel()
 {
 
-    // TO DO 이미지 받아올 것 
-    const TOTAL_SLIDES = 2;
-    const slideRef = useRef(1);
+    const TOTAL_SLIDES = 2; // length of Images - 1 (array)
+    const slideRef = useRef();
     
 // export default function Slider() {
    const [currentSlide, setCurrentSlide] = useState(0);
 
-    const nextSlide = () => {
+  const nextSlide = () => {
     if (currentSlide >= TOTAL_SLIDES) { // 더 이상 넘어갈 슬라이드가 없으면 슬라이드를 초기화합니다.
       setCurrentSlide(0);
     } else {
@@ -66,28 +77,25 @@ function Carousel()
   useEffect(() => {
     slideRef.current.style.transition = "all 0.5s ease-in-out";
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`; // 백틱을 사용하여 슬라이드로 이동하는 애니메이션을 만듭니다.
-  }, [currentSlide]);
+  }, [currentSlide]); // currentslide가 변경될때마다 실행
 
 
     return (
-        
-            <Container style={{'display' :'table'}}>
-                <div style = {{'display' : 'table-cell', 'vertical-align' : 'middle'}}>
-                    
-                        <div className='test' style = {{'position':'absolute', 'width': '100%', 'textAlign' :'left'}} onClick={prevSlide}> 
-                            <img src={left} style={{'position':'relative', 'zIndex': '10'}} />
-                        </div>
-                        <div className='test' style = {{'position':'absolute', 'width': '100%', 'textAlign' :'right'}} onClick={nextSlide}>
-                            <img src={right} style={{'position':'relative', 'zIndex': '10'}} />
-                        </div>
-                </div>
-                <SliderContainer ref={slideRef}>
-                    <IMG src={img1} />
-                    <IMG src={img2} />
-                    <IMG src={img3} />
-                </SliderContainer>
-            </Container>
-        
+        <Container >
+            <div style = {{'display' : 'table-cell', 'verticalAlign' : 'middle'}}>
+                    <Slider style = {{'textAlign' :'left'}} onClick={prevSlide}> 
+                        <SliderImg src={left} />
+                    </Slider>
+                    <Slider style = {{'textAlign' :'right'}} onClick={nextSlide}>
+                        <SliderImg src={right}  />
+                    </Slider>
+            </div>
+            <SliderContainer ref={slideRef}>
+                <IMG src={img1} />
+                <IMG src={img2} />
+                <IMG src={img3} />
+            </SliderContainer>
+        </Container>
     );
 }
 

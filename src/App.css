@@ -37,14 +37,14 @@
   }
 }
 
-
+/* 
 .main-bg { 
   height: 400px;
   background-image: url('./img/bg.jpg');
   background-size: cover;
   background-position: center;
-}
-
+} */
+/* 
 /* 애니메이션 동작 전 */
 .start { 
   opacity : 0;
@@ -54,3 +54,16 @@
   opacity : 1;
   transition: opacity 0.5s; /*변경될때 0.5초에 걸쳐서 변경되도록*/
 }
+
+
+/* .App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.content {
+  padding: 3rem;
+  border-radius: 1rem;
+} */ 
