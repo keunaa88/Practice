@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  
+  margin: 0 auto;
 }
 
 .App-logo {
@@ -54,6 +55,15 @@
   opacity : 1;
   transition: opacity 0.5s; /*변경될때 0.5초에 걸쳐서 변경되도록*/
 }
+
+
+/* customize */
+
+.content {
+  width: 1024px;
+  margin: 0 auto;
+  padding-top: 50px;
+} 
 
 
 /* .App {

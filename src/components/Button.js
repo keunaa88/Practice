@@ -5,7 +5,7 @@ const StyledButton = styled.button`
   border-radius: 8px;
   font-size: 1rem;
   line-height: 1.5;
-  border: 1px solid #c1e1ec;
+  border: 1px solid #e1e3e8;
   color: gray;
   background: white;
   color: ${(props) => props.color || "gray"};
@@ -15,11 +15,11 @@ const StyledButton = styled.button`
 }
 `;
 
-function Button({text, color, disabled}) {
+function Button({onClick, type, text, color, disabled}) {
 
     return (
         <>
-            <StyledButton color={color} disabled={disabled}>{text}</StyledButton>;
+            <StyledButton type={type} color={color} disabled={disabled} onClick={onClick}>{text}</StyledButton>
         </>
     );
 }

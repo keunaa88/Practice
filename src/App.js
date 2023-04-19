@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import Navbar from './components/Navbar';
+import UploadItem from './pages/UploadItem';
 // //성능개선
 // const Detail = lazy(() => import('./routes/Detail'));
 // const Cart = lazy(() => import('./routes/Cart'));
@@ -20,8 +21,8 @@ function App() {
 
   return (
     <div className="App">
-       
         <Navbar></Navbar>
+        <div className="content">
         <Routes>
           {/* <Route path="/detail/:id" element={<Detail shoes={shoes}/>} />
               <Route path="/cart" element={<Cart />} /> */}
@@ -38,9 +39,11 @@ function App() {
             </Route>
 
             <Route path="/admin" element={<Admin />}></Route>
+            <Route path="/uploadItem" element={<UploadItem />}></Route>
             <Route path="*" element={<div>없는 페이지임</div>} /> 
             {/* 404페이지 만들기 */}
         </Routes>
+       </div>
     </div>
   );
 }

@@ -14,9 +14,9 @@ function Dropbox({select, onSelect}) {
         <select
             value={select} 
             onChange={(e) => onSelect(e.target.value)}>
-            { category.map(x => {
+            { category.map((x, idx) => {
                 return ( 
-                    <option value={x.value}>{x.label}</option>
+                    <option key={idx} value={x.value}>{x.label}</option>
                 )})
             }
         </select>
