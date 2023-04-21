@@ -1,0 +1,15 @@
+
+.reactQuill {
+    margin-top: 16px;
+    height: 480px;
+   
+}
+.ql-editor {
+    padding: 1rem;
+    min-height: 480px;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+  .ql-editor.ql-blank::before {
+    left: 1rem;
+  }

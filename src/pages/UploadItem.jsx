@@ -1,61 +1,42 @@
-import React, { useState, useRef } from 'react';
-import axios from 'axios';
-import Button from '../components/Button';
+import React, { useState , useRef } from 'react';
+import styles from "./UploadItem.module.css";
+import 'react-quill/dist/quill.snow.css';
 import Input from '../components/Input'
 import icon from "../assets/icon/plus.jpg"; 
-
-import styles from "./UploadItem.module.css";
+import Editor from '../components/Editor'
+import Button from '../components/Button';
+import WriteBtnContainer from '../components/WriteBtnContainer';
 
 function UploadItem() {
 
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('top');
-    const inputFile = useRef(null);
-    const [imgFile, setImgFile] = useState(null);
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [imgUrl, setImageUrl] = useState(null);
+    const [errorMsg, setErrorMsg] = useState({img: '', title: '', price: ''});
+    
+    const [mainImg, setMainImg] = useState(null);
+    const [previewImg, setPreviewImg] = useState(null);
+    const [content, setContent] = useState('');
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const data = { title, price, category };
-        // axios.post('http://localhost:8080/create', data)
-        //   .then(() => {
-        //     console.log('Data successfully saved');
-        //   })
-        //   .catch((err) => {
-        //     console.error(err);
-        //   });
+    const titleInputRef = useRef(null);
+    const priceInputRef = useRef(null);
+    const inputFileRef = useRef(null);
+    const imageRef = useRef(null);
 
-        const formData = new FormData();
-        // const config = {
-        //     header: { 'content-type': 'multipart/form-data' },
-        //   };
-        formData.append('file', selectedFile);
-                
-        // axios.post('http://localhost:8080/create/upload', formData, config)
-        // .then(response => {console.log(response);  }) //setImageUrl(response.data.imageUrl)
-        // .catch(error => console.log(error));
-
-        const response = await axios.post('http://localhost:8080/create/upload', formData);
-
-        // 이미지 URL을 상태로 설정
-        //setImageUrl(response.data.imageUrl);
-
-    };
 
     const onImageClick = () => {
-        // `current` points to the mounted file input element
-        inputFile.current.click();
+        inputFileRef.current.click();
     };
 
     const onDeleteImg = () =>{
-        setImgFile(null);
+        setMainImg(null);
+        setPreviewImg(null);
     };
 
-    const saveImgFile = () => {
-        const file = inputFile.current.files[0];
-        setSelectedFile(file)
+    const onSaveImgFile = () => {
+        const file = inputFileRef.current.files[0];
+        setMainImg(file)
+        setErrorMsg({img: ''});
         if(!file) return;
         if(!file.type.startsWith('image/')) {
             alert('please upload image file');
@@ -65,48 +46,76 @@ function UploadItem() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
-            setImgFile(reader.result);
+            setPreviewImg(reader.result);
         };
     };
 
+    const handleErrorMsgChange = (errorMsg) => {
+      setErrorMsg(errorMsg);
+    };
+
+    const handleEditorChange = (content) => {
+        setContent(content)
+        console.log('content', content)
+    };
 
     return (
+        <>
         <div className={styles.formWrapper}>
             <div className={styles.line}>
                 <h2>ADD NEW PRODUCT </h2>
             </div>
-            <form className={styles.adminForm} onSubmit={handleSubmit}>
-                <div className={styles.field}  >
-                    <label htmlFor="main image">Main image</label>
-                    <div className={styles.imgWrapper}> 
-                        <input type="file" id="file" ref={inputFile} accept="image/gif, image/jpeg, image/png" style={{display: "none"}} onChange={saveImgFile}/>
-                        <img  src={imgFile ? imgFile : icon} alt="preview" onClick={onImageClick} />
-                        { imgFile && <Button text="Delete" type="button" onClick={onDeleteImg}/>}
+            <form className={styles.adminForm}>
+                <div>
+                    <div className={styles.field}  >
+                        <label htmlFor="main image">Main image</label>
+                        <div className={styles.imgWrapper} ref={imageRef}  tabIndex="0"> 
+                            <input type="file" id="file" ref={inputFileRef} accept="image/gif, image/jpeg, image/png" style={{display: "none"}} onChange={onSaveImgFile}/>
+                            <img  src={previewImg ? previewImg : icon} alt="preview" onClick={onImageClick} />
+                            { previewImg && <Button text="Delete" type="button" onClick={onDeleteImg}/>}
+                        </div>
+                        { errorMsg.img && <span className={styles.error}>{errorMsg.img}</span> }
+                    </div>
+                    <Input
+                        labelText="Category"
+                        type="select"
+                        value={category}
+                        onChange={setCategory}
+                    />
+                    <Input
+                        labelText="Product name"
+                        type="text"
+                        value={title}
+                        onChange={(event) => { setTitle(event.target.value); handleErrorMsgChange({title:''})}}
+                        ref={titleInputRef}
+                    />
+                    { errorMsg.title && <span className={styles.error}>{errorMsg.title}</span> }
+                    <Input
+                        labelText="Price(AUD)"
+                        type="number" 
+                        value={price}
+                        placeholder='Please input only number'
+                        ref={priceInputRef}
+                        onChange={(event) => { setPrice(event.target.value); handleErrorMsgChange({price:''})}}
+                    />
+                    { errorMsg.price && <span className={styles.error}>{errorMsg.price}</span> }
+                    <div className={styles.field}  >
+                        <label htmlFor="content">Content</label>
+                        <Editor onChangeContent={handleEditorChange}/>
                     </div>
                 </div>
-                <Input
-                    labelText="Category"
-                    type="select"
-                    value={category}
-                    onChange={setCategory}
-                />
-                <Input
-                    labelText="Product name"
-                    type="text"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                />
-                <Input
-                    labelText="Price(AUD)"
-                    type="number" 
-                    value={price}
-                    placeholder='Please input only number'
-                    onChange={(event) => setPrice(event.target.value)}
-                />
-                
-                <Button type="submit" text="Save"></Button>
+                <WriteBtnContainer 
+                    title={title} 
+                    category={category}
+                    price={price} 
+                    mainImg={mainImg} 
+                    onErrorMsgChange={handleErrorMsgChange}
+                    content={content}
+                    ref={{ imageRef: imageRef, titleInputRef:titleInputRef, priceInputRef : priceInputRef}}
+                ></WriteBtnContainer>
             </form> 
         </div>
+        </> 
     );
 }
 

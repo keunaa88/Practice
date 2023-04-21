@@ -1,25 +1,25 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import Dropbox from '../components/Dropbox';
 import styles from "./Input.module.css";
 
-function Input({labelText, type, value, placeholder, onChange}) {
+const Input = forwardRef((props, ref) => {
 
     return (
-        
         <div className={styles.field}>
-            <label htmlFor={labelText}>{labelText}</label>
-            { type == 'select' ? 
-                <Dropbox select={value} onSelect={onChange}></Dropbox>
-            : type != '' &&
+            <label htmlFor={props.labelText}>{props.labelText}</label>
+            { props.type == 'select' ? 
+                <Dropbox select={props.value} onSelect={props.onChange}></Dropbox>
+            : props.type != '' &&
                 <input
-                    type={type} 
-                    value={value}
-                    placeholder={placeholder}
-                    onChange={onChange} />
+                    type={props.type} 
+                    value={props.value}
+                    placeholder={props.placeholder}
+                    onChange={props.onChange} 
+                    ref={ref}/>
             }
         </div>
     );
 
-}
+});
 
 export default Input;

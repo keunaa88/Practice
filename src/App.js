@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import Navbar from './components/Navbar';
 import UploadItem from './pages/UploadItem';
+
 // //성능개선
 // const Detail = lazy(() => import('./routes/Detail'));
 // const Cart = lazy(() => import('./routes/Cart'));
@@ -43,6 +44,7 @@ function App() {
             <Route path="*" element={<div>없는 페이지임</div>} /> 
             {/* 404페이지 만들기 */}
         </Routes>
+        
        </div>
     </div>
   );
