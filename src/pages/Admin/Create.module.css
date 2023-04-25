@@ -26,28 +26,7 @@ label {
   font-weight: 700;
   font-size: large;
 }
-.imgWrapper {
-  width: 140px;
-}
-.imgWrapper img{
-  width: 140px;
-  height: 140px;
-  text-align: center;
-  border: 1px dotted gray;
-  cursor: pointer;
-}
 
-.imgWrapper button{
-  margin: 10px 0 0 30px;
-}
-
-
-.error {
-  color: red;
-  font-size: 16px;
-  font-weight: 700;
-  font-style: italic;
-}
 
 /* 
 .adminForm  {

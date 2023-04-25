@@ -2,9 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { Nav } from 'react-bootstrap';
-import { Context1 } from '../App';
+import { Context1 } from '../../App';
 import {useSelector, useDispatch} from 'react-redux'
-import { addItem, changeWatched } from './../store.js';
+import { addItem, changeWatched } from '../../store.js';
 
 // styled components 장점
 // 스타일이 다른 js파일로 오염되지 않음 Detail.module.css(detail에만 적용됨)/ 로딩시간 단축

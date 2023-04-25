@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store.js'
+//import store from './store.js'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { configureStore } from '@reduxjs/toolkit';
+import store from './store/store'
 
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   // <React.StrictMode>
   //아래와 같이 프로바이더를 써주면(리덕스)

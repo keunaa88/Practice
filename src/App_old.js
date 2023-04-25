@@ -11,7 +11,7 @@ import { useQuery } from "react-query"
 
 
 //import Detail from './routes/Detail';
-import About from './pages/About';
+import About from './pages/Home/About';
 import Event from './routes/Event';
 //import Cart from './routes/Cart';
 

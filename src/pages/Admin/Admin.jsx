@@ -1,15 +1,19 @@
 import Table from 'react-bootstrap/Table';
-import Button from "./../components/Button";
+import Button from "../../components/Button";
 import styles from "./Admin.module.css";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Admin() {
     
     let navigate = useNavigate(); 
+
+  
+
+
     return (
-        <div>
-            <div className={styles.adminWrapper}>
-                <Button text="Upload" onClick={() => {  navigate("/uploadItem"); }}></Button>
+            <div className={styles.adminWrapper}>ssss
+                <Button text="Upload" onClick={() => {  navigate("/admin/create"); }}></Button>
 
                 <Table striped bordered hover>
                     <thead>
@@ -41,7 +45,6 @@ function Admin() {
                     </tbody>
                     </Table>
             </div>
-        </div>
     );
 }
 

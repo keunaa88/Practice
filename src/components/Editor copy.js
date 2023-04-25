@@ -1,24 +1,25 @@
 import React, { useState, useMemo, useRef, useCallback } from "react"
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"
 import styles from "./Editor.module.css";
 import {uploadImageToS3} from "../api/contentApi";
-import { useSelector, useDispatch } from "react-redux";
-import { changeField, changeContentImages } from '../store/writeSlice';
 
-const Editor = React.memo(() => {
 
+
+const Editor = React.memo(({ onChangeContent }) => {
+
+
+  
     const { content  } = useSelector((state) => state.write);
-    //const [ imgArray, setImgArray ] = useState([]);
+    console.log('Editor 호출!');
+    const [content, setContent] = useState('');
     const quillRef = useRef();
 
-    const dispatch = useDispatch();
-    const onChangeField = (payload) => {  dispatch(changeField(payload))};
-    //const onChangeContentImages = (payload) => {  console.log('onChangeContentImages payload:::', payload); dispatch(changeContentImages(payload)) };
+    const handleEditorChange = (value) => {
+        setContent(value);
+       // onChangeContent(value); 
+    };
 
-    const handleInputChange = (value) => {
-        onChangeField({ key: 'content', value});
-     };
 
     const handleImageUpload  = () => {
         console.log('에디터에서 이미지 버튼을 클릭하면 이 핸들러가 시작됩니다!');
@@ -30,13 +31,16 @@ const Editor = React.memo(() => {
         input.setAttribute('accept', 'image/*');
         input.click(); // 에디터 이미지버튼을 클릭하면 이 input이 클릭된다.
         // input이 클릭되면 파일 선택창이 나타난다.
+      
         // input에 변화가 생긴다면 = 이미지를 선택
         input.addEventListener('change', async () => {
           const file = input.files[0];
+          console.log('file', file)
           try {
             const response = await uploadImageToS3(file);
             const imgUrl = response.data.file.location 
             console.log('성공 시, 백엔드가 보내주는 데이터', imgUrl);
+            
             // write image tag into editor
             // 2. get current location of editor
             // 3. insert image
@@ -51,7 +55,7 @@ const Editor = React.memo(() => {
       };
 
     const module = useMemo(() => {
-      console.log('module 생성')
+        console.log('module생성');
         return {
             toolbar: {
                 container: [
@@ -66,23 +70,18 @@ const Editor = React.memo(() => {
             }
         };
     }, []); // caching after randering 
- 
-    const formats  = useMemo(() => {
-      console.log('formats 생성')
-      return (
-          [
-            'header',
-            'bold',
-            'italic',
-            'underline',
-            'strike',
-            'ordered',
-            'bullet',
-            'link',
-            'image',
-        ]
-      )
-    }, []);
+
+    const formats = [
+        'header',
+        'bold',
+        'italic',
+        'underline',
+        'strike',
+        'ordered',
+        'bullet',
+        'link',
+        'image',
+      ];
 
     return (
         <ReactQuill 
@@ -92,7 +91,7 @@ const Editor = React.memo(() => {
             modules={module}
             formats={formats}
             value={content}
-            onChange={handleInputChange}
+            onChange={handleEditorChange}
             placeholder={'Please input product detail.'}
         />
 
@@ -100,6 +99,3 @@ const Editor = React.memo(() => {
 });
 
 export default Editor;
-
-
-
