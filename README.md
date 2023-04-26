@@ -1,5 +1,8 @@
 # KMALL
+
 This project is my personal project developing using React, Node and Mongo
+LINK : 
+
 
 ## Introduction
 - Online shopping mall
@@ -25,6 +28,6 @@ TOOL	          VSCODE
 - Hosting with AWS
 
 ## Developer
-Euna Kim 
-keunaa88@gmail.com
-https://www.linkedin.com/in/euna-kim-ab3594139/
+- Euna Kim 
+- keunaa88@gmail.com
+- https://www.linkedin.com/in/euna-kim-ab3594139/
