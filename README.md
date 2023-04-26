@@ -1,6 +1,6 @@
 # KMALL
 - This project is my personal project developing using React, Node and Mongo
-- LINK : 
+- LINK : https://keunaa88.github.io/
 
 
 ## Introduction
