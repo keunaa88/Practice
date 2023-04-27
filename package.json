@@ -21,6 +21,11 @@
     "styled-components": "^5.3.9",
     "web-vitals": "^2.1.4"
   },
+  "npm installdevDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
+    "nodemon": "^2.0.22",
+    "react-refresh": "^0.14.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
