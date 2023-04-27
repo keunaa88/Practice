@@ -8,7 +8,6 @@ import PreviewImage from '../../components/PreviewImage';
 import { categoryOptions } from '../../common/options';
 import { changeField, setErrorMessage } from '../../store/writeSlice';
 import styles from "./Create.module.css";
-import 'react-quill/dist/quill.snow.css';
 
 function Create() {
 
