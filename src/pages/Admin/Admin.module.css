@@ -1,4 +1,4 @@
-/* .adminWrapper {
+ .adminWrapper {
   max-width: 1040px;
   margin : 50px auto;
   padding: 20px;
@@ -6,7 +6,7 @@
 
 .adminWrapper button {
   float: left;
-} */
+} 
 
 @media screen and (max-width: 1000px) {
   .adminWrapper {
