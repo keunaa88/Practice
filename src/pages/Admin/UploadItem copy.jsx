@@ -1,6 +1,5 @@
 import React, { useState , useRef, useEffect } from 'react';
 import styles from "./UploadItem.module.css";
-import 'react-quill/dist/quill.snow.css';
 import Input from '../components/Input'
 import icon from "../assets/icon/plus.jpg"; 
 import Editor from '../components/Editor'
