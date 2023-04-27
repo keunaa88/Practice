@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useRef, useCallback } from "react"
 import ReactQuill, { Quill } from "react-quill";
-import "react-quill/dist/quill.snow.css"
 import styles from "./Editor.module.css";
 import {uploadImageToS3} from "../api/contentApi";
 import { useSelector, useDispatch } from "react-redux";
