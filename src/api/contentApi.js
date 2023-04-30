@@ -35,12 +35,12 @@ export const uploadImageToS3 =  async (selectedFile) => {
 export const uploadImageToS3fromURL = async (selectedFile) => {
 
     // web browser에서 api호출이므로 fetch 사용
-    const response = fetch(selectedFile)
+    const response = await fetch(selectedFile)
         .then((res) => res.blob())
         .then((blob) => {
             const formData = new FormData();
             formData.append('file', blob);
-            const response =  axios.post(`${api.baseURL}/post/uploadImg`, formData)
+            const response =   axios.post(`${api.baseURL}/post/uploadImg`, formData)
             return response;
         }).then(response => {
             // 성공적으로 업로드된 경우 실행할 코드
