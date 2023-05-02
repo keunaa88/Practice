@@ -1,0 +1,37 @@
+
+
+.detailWrapper {
+    font-weight: 800;
+}
+
+.basicSection{
+    display: flex;
+    gap : 100px;
+}
+.basicSection h2 {
+    padding-bottom: 20px;
+}
+.basicSection p {
+    font-size: 20px;
+    font-weight: 600;
+}
+.basicImage {
+    flex: 1;
+}
+.basicImage img {
+    width: 400px;    
+    height: 400px;    
+}
+
+.basicDetail {
+    flex: 2;
+}
+
+.contentSection {
+    display: flex;
+}
+
+.detailWrapper image {
+    width: 200px;
+    height: 200px;
+}

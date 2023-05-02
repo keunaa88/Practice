@@ -24,7 +24,6 @@ const CancelButton = styled.button`
     height: 2.5rem;
     font-size: 1rem;
     font-weight: 600;
-    margin-right: 1rem;
 `;
 
 function Button({onClick, styleType, type, text, color, bgColor, disabled}) {

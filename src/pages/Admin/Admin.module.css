@@ -1,14 +1,11 @@
- .adminWrapper {
-  max-width: 1040px;
-  margin : 50px auto;
-  padding: 20px;
+
+.buttonWrapper {
+  float: right;
+  margin-bottom: 20px;
 }
 
-.adminWrapper button {
-  float: left;
-} 
 
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
   .adminWrapper {
     width: 100%;
   }
@@ -16,4 +13,4 @@
 
 @media screen and (max-width: 575px) {
   
-}
+} */

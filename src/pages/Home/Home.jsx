@@ -9,26 +9,14 @@ function Home() {
   // let [shoes, setShoes] = useState(data);
 
     return (
-        
-        <div className="Home">
-                <Carousel></Carousel>
-                <div className="content" style={{minHeight:'500px'}}>
-                    <div>dddd</div>
-                    <div>dddd</div>
-                    <div>dddd</div>
-                </div>
-            
-            {/* <Container>
-                <Row>
-                    {shoes.map((shoes, i) => {
-                        return (
-                        <Card shoes={shoes} i={i} key={i} ></Card>
-                        );
-                    })} 
-                </Row>
-              </Container> */}
-
-        </div>
+        <>
+            <Carousel />
+            <div className="content">
+                <div>dddd</div>
+                <div>dddd</div>
+                <div>dddd</div>
+            </div>
+        </>
     )
 }
 

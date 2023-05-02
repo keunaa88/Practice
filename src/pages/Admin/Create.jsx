@@ -29,7 +29,7 @@ function Create() {
         dispatch(setErrorMessage({ key: name, value: ''}));
      };
      return (
-        <div className={styles.formWrapper}>
+        <div className="content">
             <div className={styles.line}>
                 <h2>ADD NEW PRODUCT </h2>
             </div>

@@ -7,9 +7,17 @@ const readPostAction = createAction('read/readPost');
 
 //비동기 작업을 위한 createAsyncThunk
 const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
-    
+
   const { data } = await contentApi.contentRead(id);
   return {...data};
+  // if(id) {
+  //   const { data } = await contentApi.contentRead(id);
+  //   return {...data};
+  // } else {
+  //   const { data } = await contentApi.contentReadAll();
+  //   console.log('readPost' , data);
+  //   return [...data];
+  // }
 });
 
 const initialState = {
@@ -35,6 +43,10 @@ const readSlice = createSlice({
         clearPost: (state) => { console.log(state); return initialState} ,
     },
     extraReducers: {
+        [readPost.pending]: (state) => ({
+          ...state,
+          loading: 'pending',
+        }),
         [readPost.fulfilled]: (state, { payload }) => ({
           ...state,
           loading: 'success',
@@ -49,6 +61,11 @@ const readSlice = createSlice({
             created: payload.created
           },
         }),
+        [readPost.rejected]: (state, { payload }) => ({
+          ...state,
+          loading: 'failed',
+          error: payload.error
+        }),
     }
 
 });
@@ -56,16 +73,3 @@ export { readPost };
 export default readSlice;
 export const { clearPost } = readSlice.actions;
 
-// [readPost.fulfilled]: (state, { payload }) => ({
-//   ...state,
-//   loading: 'success',
-//   post: {
-//     id: payload._id,
-//     mainImg: payload.mainImg,
-//     title: payload.title,
-//     category: payload.category,
-//     price: payload.price,
-//     content: payload.content,
-//     created: payload.created
-//   },
-// }),

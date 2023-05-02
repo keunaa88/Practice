@@ -23,6 +23,10 @@ body.active-modal {
 .overlay {
     background: rgba(49,49,49,0.8);
 }
+
+.modal-content.container {
+    max-width: 600px;
+}
 .modal-content {
     position: absolute;
     top: 40%;

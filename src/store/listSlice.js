@@ -3,18 +3,19 @@ import { createSlice, createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import contentApi from "api/contentApi";
 
 // 액션 생성자 함수 생성
-const readPostAction = createAction('read/readPost');
+const listPostAction = createAction('list/listPost');
 
 //비동기 작업을 위한 createAsyncThunk
-const readPost = createAsyncThunk(readPostAction, async (id, thunkAPI) => {
-    
-  const { data } = await contentApi.contentRead(id);
-  return {...data};
+const listPost = createAsyncThunk(listPostAction, async ({category, skip, limit}, thunkAPI) => {
+  const count = await contentApi.getCount(category);
+  const { data } = await contentApi.getList(category, skip, limit); // 0, 10 (from 1~10 data) 1, 
+  return { count, data: [...data] };
 });
 
 const initialState = {
       loading: 'idle',
-      post: {
+      count: 0,
+      posts: [{
         id: '',
         mainImg: '',
         title: '',
@@ -22,50 +23,34 @@ const initialState = {
         price: '',
         content: '',
         created: '',
-      },
-      insertedId: '',
-      error: null,
+      }],
    };
 // createSlice : redux store 관리하는데 필요한 slice를 생성
 // usestate와 비슷한 역할
-const readSlice = createSlice({
-    name: 'read',
+const listSlice = createSlice({
+    name: 'list',
     initialState,
     reducers: {
         clearPost: (state) => { console.log(state); return initialState} ,
     },
     extraReducers: {
-        [readPost.fulfilled]: (state, { payload }) => ({
+        [listPost.fulfilled]: (state, { payload }) => ({
           ...state,
           loading: 'success',
-          insertedId: payload.insertedId,
-          post: {
-            id: payload._id,
-            mainImg: payload.mainImg,
-            title: payload.title,
-            category: payload.category,
-            price: payload.price,
-            content: payload.content,
-            created: payload.created
-          },
+          count: payload.count,
+          posts: payload.data.map(post => ({
+            id: post._id,
+            mainImg: post.mainImg,
+            title: post.title,
+            category: post.category,
+            price: post.price,
+            content: post.content,
+            created: post.created
+          })),
         }),
     }
 
 });
-export { readPost };
-export default readSlice;
-export const { clearPost } = readSlice.actions;
-
-// [readPost.fulfilled]: (state, { payload }) => ({
-//   ...state,
-//   loading: 'success',
-//   post: {
-//     id: payload._id,
-//     mainImg: payload.mainImg,
-//     title: payload.title,
-//     category: payload.category,
-//     price: payload.price,
-//     content: payload.content,
-//     created: payload.created
-//   },
-// }),
+export { listPost };
+export default listSlice;
+export const { clearPost } = listSlice.actions;

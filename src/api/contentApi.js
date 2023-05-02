@@ -7,15 +7,34 @@ export const contentApi = {
             const response = await axios.get(`${api.baseURL}/post/detail/${id}`);
             return response;
         } catch (err) {
-            error(err);
+            console.error(err);
         }
     },
+
+    getCount: async (category) => {
+        try {
+            const response = await axios.get(`${api.baseURL}/post/count?category=${category}`);
+            return response.data;
+        } catch (err) {
+            console.error(err);
+        }
+    },
+
+    getList: async (category, skip, limit) => {
+        try {
+            const response = await axios.get(`${api.baseURL}/post/detail?category=${category}&skip=${skip}&limit=${limit}`);
+            return response;
+        } catch (err) {
+            console.error(err);
+        }
+    },
+
     contentUpload: async (data) => {
         try {
             const response = await axios.post(`${api.baseURL}/post/upload`, data);
             return response;
         } catch (err) {
-            error(err);
+            console.error(err);
         }
     }
     

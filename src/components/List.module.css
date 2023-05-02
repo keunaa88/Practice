@@ -1,0 +1,12 @@
+
+.tableWrapper thead {
+    text-align: center;
+}
+.tableWrapper tr {
+    text-align: center;
+    background-color: white;
+}
+
+.tableWrapper td.title {
+    cursor: pointer;
+}
