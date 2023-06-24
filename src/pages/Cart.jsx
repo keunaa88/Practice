@@ -6,7 +6,7 @@ import { memo, useMemo, useState} from 'react';
 
 let Child = memo(function Child(props) {
     console.log('child 인디 제 랜더링', {props})
-    return <div>cart의  자식임</div>
+    return <div>cart의  자 식 임</div>
 })
 
 function fun() {
