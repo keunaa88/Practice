@@ -5,14 +5,15 @@ import { changeCount, subCount } from './../store.js';
 import { memo, useMemo, useState} from 'react';
 
 let Child = memo(function Child(props) {
-    console.log('child인디 제 랜더링', {props})
-    return <div>cart의 자식임</div>
+    console.log('child 인디 제 랜더링', {props})
+    return <div>cart의  자 식임</div>
 }) 
 
 function fun() {
     console.log('func 함수임')
     return '100'
 }
+
 function Cart() {
     console.log('cart인디 제 랜더링')
 
