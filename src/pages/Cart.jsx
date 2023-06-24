@@ -6,11 +6,11 @@ import { memo, useMemo, useState} from 'react';
 
 let Child = memo(function Child(props) {
     console.log('child 인디 제 랜더링', {props})
-    return <div>cart의  자 식임</div>
-}) 
+    return <div>cart의  자식임</div>
+})
 
 function fun() {
-    console.log('func 함수임')
+    console.log('func 함수')
     return '100'
 }
 

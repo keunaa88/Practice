@@ -1,6 +1,9 @@
 .App {
-  
   margin: 0 auto;
+}
+
+.test {
+  margin: 0;
 }
 
 .App-logo {
