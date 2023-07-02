@@ -11,6 +11,7 @@ import Footer from 'components/Footer';
 // const Detail = lazy(() => import('./routes/Detail'));
 // const Cart = lazy(() => import('./routes/Cart'));
 
+//Main
 function App() {
 
   return (
