@@ -14,6 +14,7 @@ function fun() {
     return '100'
 }
 
+// 1.8.x
 function Cart() {
     console.log('cart인디 제 랜더링')
 
