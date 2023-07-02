@@ -12,6 +12,8 @@ import Footer from 'components/Footer';
 // const Cart = lazy(() => import('./routes/Cart'));
 
 //bugs 1.0 - 1.8.x - update
+
+//1.8.x
 function App() {
 
   return (
