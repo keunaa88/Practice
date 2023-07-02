@@ -13,7 +13,8 @@ import Footer from 'components/Footer';
 
 //bugs 1.0 - 1.8.x - update
 //bug1
-//bug2 --
+//bug2 
+//test
 function App() {
 
   return (
