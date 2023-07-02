@@ -11,7 +11,7 @@ import Footer from 'components/Footer';
 // const Detail = lazy(() => import('./routes/Detail'));
 // const Cart = lazy(() => import('./routes/Cart'));
 
-//bugs 1.0 - 다른이가 또 수정
+//bugs 1.0 - 1.8.x
 function App() {
 
   return (
