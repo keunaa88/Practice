@@ -14,9 +14,6 @@ function fun() {
     return '100'
 }
 
-// want to upload to new branch 'a' folder
-// edit again!!!!!
-// I am b
 function Cart() {
     console.log('cart인디 제 랜더링')
 
