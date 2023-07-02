@@ -7,7 +7,7 @@ import Navbar from 'components/Navbar';
 import Home from 'pages/Home/Home';
 import Footer from 'components/Footer';
 
-// //성능개선
+// //성능개선222
 // const Detail = lazy(() => import('./routes/Detail'));
 // const Cart = lazy(() => import('./routes/Cart'));
 
